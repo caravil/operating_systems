@@ -77,10 +77,8 @@ Configuracion del entorno.
 
 
 
-################################################################################################
 
-
-Configuracion para la arquitectura ARM
+# Configuracion para la arquitectura ARM
 
 1. Copiamos el archivo dijkstra.c en la ruta donde vamos a generar nuestro docker. 
 
@@ -94,19 +92,19 @@ Configuracion para la arquitectura ARM
 
 4. En la terminal copiamos el archivo con la siguiente estructura para la arquitectura ARM:
 
-	# Dockerfile para una imagen ARM
+	Dockerfile para una imagen ARM
 	FROM arm32v7/gcc:latest
 
-	# Instala qemu-user-static para habilitar la emulación de arquitectura
+	Instala qemu-user-static para habilitar la emulación de arquitectura
 	RUN apt-get update && apt-get install -y qemu-user-static
 
 	WORKDIR /app
 	COPY dijkstra.c .
 
-	# Compila el código fuente
+        Compila el código fuente
 	RUN gcc -o dijkstra dijkstra.c
 
-	# Comando por defecto al ejecutar el contenedor
+	Comando por defecto al ejecutar el contenedor
 	CMD ["./dijkstra"]
 
 
@@ -127,10 +125,9 @@ Configuracion para la arquitectura ARM
 	time docker run --platform linux/arm/v7 dijkstra-arm
 
 
-###############################################################################################
 
 
-Configuracion para la arquitectura X86
+# Configuracion para la arquitectura X86
 
 
 1. Copiamos el archivo dijkstra.c en la ruta donde vamos a generar nuestro docker. 
@@ -145,19 +142,19 @@ Configuracion para la arquitectura X86
 
 4. En la terminal copiamos el archivo con la siguiente estructura para la arquitectura x86:
 
-	# Dockerfile para una imagen x86
+        Dockerfile para una imagen x86
 	FROM gcc:latest
 
-	# Establece el directorio de trabajo dentro del contenedor
+	Establece el directorio de trabajo dentro del contenedor
 	WORKDIR /app
 
-	# Copia el código fuente al directorio de trabajo del contenedor
+   	Copia el código fuente al directorio de trabajo del contenedor
 	COPY dijkstra.c .
 
-	# Compila el programa
+   	Compila el programa
 	RUN gcc -o dijkstra dijkstra.c
 
-	# Comando por defecto al ejecutar el contenedor
+   	Comando por defecto al ejecutar el contenedor
 	CMD ["./dijkstra"]
 
 5. Contruimos la imagen con el siguiente comando: 
