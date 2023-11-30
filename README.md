@@ -101,7 +101,7 @@ Configuracion del entorno.
 		#WORKDIR /app
 		COPY dijkstra.c .
 
-        	#Compila el código fuente
+		#Compila el código fuente
 		RUN gcc -o dijkstra dijkstra.c
 
 		#Comando por defecto al ejecutar el contenedor
