@@ -125,8 +125,6 @@ Configuracion del entorno.
 	time docker run --platform linux/arm/v7 dijkstra-arm
 
 
-
-
 # Configuracion para la arquitectura X86
 
 
