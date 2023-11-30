@@ -140,7 +140,7 @@ Configuracion del entorno.
 
 4. En la terminal copiamos el archivo con la siguiente estructura para la arquitectura x86:
 
-        	#Dockerfile para una imagen x86
+		#Dockerfile para una imagen x86
 		FROM gcc:latest
 
 		#Establece el directorio de trabajo dentro del contenedor
