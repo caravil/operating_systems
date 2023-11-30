@@ -84,45 +84,45 @@ Configuracion del entorno.
 
 2. Abrimos una terminal wsl como administrador y nos ubicamos en la ruta deseada con el siguiente comando ( recuerda que la direccion es difrente para tu equipo ajustala como sea necesario ): 
 
-	cd /mnt/c/Users/sp_ca/OneDrive/Escritorio/Sistemasoperativos/ARM
+		cd /mnt/c/Users/sp_ca/OneDrive/Escritorio/Sistemasoperativos/ARM
 
 3. Creamos el arcivo docker file con el siguiente comando:
 
-	nano Dockerfile 
+		nano Dockerfile 
 
 4. En la terminal copiamos el archivo con la siguiente estructura para la arquitectura ARM:
 
-	Dockerfile para una imagen ARM
-	FROM arm32v7/gcc:latest
+		#Dockerfile para una imagen ARM
+		FROM arm32v7/gcc:latest
 
-	Instala qemu-user-static para habilitar la emulación de arquitectura
-	RUN apt-get update && apt-get install -y qemu-user-static
+		#Instala qemu-user-static para habilitar la emulación de arquitectura
+		RUN apt-get update && apt-get install -y qemu-user-static
 
-	WORKDIR /app
-	COPY dijkstra.c .
+		#WORKDIR /app
+		COPY dijkstra.c .
 
-        Compila el código fuente
-	RUN gcc -o dijkstra dijkstra.c
+        	#Compila el código fuente
+		RUN gcc -o dijkstra dijkstra.c
 
-	Comando por defecto al ejecutar el contenedor
-	CMD ["./dijkstra"]
+		#Comando por defecto al ejecutar el contenedor
+		CMD ["./dijkstra"]
 
 
 5. Contruimos la imagen con el siguiente comando: 
 
-	docker build -t dijkstra-arm -f Dockerfile --platform linux/arm/v7 .
+		docker build -t dijkstra-arm -f Dockerfile --platform linux/arm/v7 .
 
 6. Corremos la imagen con el siguiente comando: 
 
-	docker run --platform linux/arm/v7 dijkstra-arm
+		docker run --platform linux/arm/v7 dijkstra-arm
 
 7. Verificamos la arquitectura del contenedor con el siguiente comando: 
 
-	docker inspect --format='{{.Architecture}}' dijkstra-arm
+		docker inspect --format='{{.Architecture}}' dijkstra-arm
 
 8. Ejecutamos y medimos el tiempo de ejecucion del algoritmo con el siguiente comando: 
 
-	time docker run --platform linux/arm/v7 dijkstra-arm
+		time docker run --platform linux/arm/v7 dijkstra-arm
 
 
 # Configuracion para la arquitectura X86
@@ -132,41 +132,41 @@ Configuracion del entorno.
 
 2. Abrimos una terminal wsl como administrador y nos ubicamos en la ruta deseada con el siguiente comando ( recuerda que la direccion es difrente para tu equipo ajustala como sea necesario ):  
 
-	cd /mnt/c/Users/sp_ca/OneDrive/Escritorio/Sistemasoperativos/X86
+		cd /mnt/c/Users/sp_ca/OneDrive/Escritorio/Sistemasoperativos/X86
 
 3. Creamos el arcivo docker file con el siguiente comando:
 
-	nano Dockerfile 
+		nano Dockerfile 
 
 4. En la terminal copiamos el archivo con la siguiente estructura para la arquitectura x86:
 
-        Dockerfile para una imagen x86
-	FROM gcc:latest
+        	#Dockerfile para una imagen x86
+		FROM gcc:latest
 
-	Establece el directorio de trabajo dentro del contenedor
-	WORKDIR /app
+		#Establece el directorio de trabajo dentro del contenedor
+		WORKDIR /app
 
-   	Copia el código fuente al directorio de trabajo del contenedor
-	COPY dijkstra.c .
+   		#Copia el código fuente al directorio de trabajo del contenedor
+		COPY dijkstra.c .
 
-   	Compila el programa
-	RUN gcc -o dijkstra dijkstra.c
+   		#Compila el programa
+		RUN gcc -o dijkstra dijkstra.c
 
-   	Comando por defecto al ejecutar el contenedor
-	CMD ["./dijkstra"]
+   		#Comando por defecto al ejecutar el contenedor
+		CMD ["./dijkstra"]
 
 5. Contruimos la imagen con el siguiente comando: 
 
-	docker build -t dijkstra-x86 .
+		docker build -t dijkstra-x86 .
 
 6. Corremos la imagen con el siguiente comando: 
 
-	docker run dijkstra-x86
+		docker run dijkstra-x86
 
 7. Verificamos la arquitectura del contenedor con el siguiente comando: 
 
-	docker inspect --format='{{.Architecture}}' dijkstra-x86
+		docker inspect --format='{{.Architecture}}' dijkstra-x86
 
 8. Ejecutamos y medimos el tiempo de ejecucion del algoritmo con el siguiente comando: 
 
-	time docker run dijkstra-x86
+		time docker run dijkstra-x86
